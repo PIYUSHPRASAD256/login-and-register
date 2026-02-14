@@ -1,0 +1,45 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+
+int main(){
+    string username,password,count;
+int select;
+    cout<<"Choose the following"<<endl<<"1.Register\n2.Login"<<endl;
+    cin>>select;
+
+    if (select==1){
+       cout<<"Enter username and password: "; cin>>username>>password; ofstream file("log.txt",ios::app); file<<username<<" "<<password<<endl; file.close();
+    }
+
+    else if (select==2)
+
+    {
+        ifstream file("log.txt");
+        string user,pass;
+        bool found=false;
+        while(file>>user>>pass){
+            cout<<"Enter username and password"<<endl; cin>>username>>password;
+            if(user==username && pass==password){
+                found=true;
+                break;
+            }
+        }
+        file.close();
+        if(found){
+            cout<<"Login successful!"<<endl;
+        }
+        else{
+            cout<<"Invalid username or password."<<endl;
+        }
+    }
+    else{
+ cout<<"Invalid choice"<<endl; 
+
+
+} return 0;
+}
+
+
+// in order to work and enter data use "g++ login.cpp -o login " and then ./login
